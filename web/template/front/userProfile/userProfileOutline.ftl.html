@@ -1,0 +1,108 @@
+
+<div id="userProfile">
+
+
+    <div id="userProfileOutlineBody" class="row">
+        <div id="leftCol" class="four columns alpha">
+            <div id="userImageAndUsername" class="row">
+                <p id="userUsername" class="row">${strip_slashes(user.username)?html}</p>
+                <div class="imgContainer row">
+                    <#if user.imageURL??>
+                    <img id="userAvatar" src="${strip_slashes(user.imageURL)}" alt="Avatar di ${strip_slashes(user.username)?html}" />
+                    <#else>
+                    <img src="http://www.gemologyproject.com/wiki/images/5/5f/Placeholder.jpg" alt="User avatar placeholder"/>
+                    </#if>
+                </div>
+                <#if user.group??>
+                <p id="userGroup" class="row">${strip_slashes(user.group.name)?html}</p>
+                </#if>
+            </div>
+
+            <nav>
+                <#switch currentSection!0 >
+                <#case 1>
+                <h1 class="section title">Nome Categoria</h1>
+                <ul>
+                    <li class="currentSection">Le mie Serie</li>
+                    <li><a href="ProfiloPersonale?sezione=2">Palinsesto</a></li>
+                </ul>
+                <h1 class="section title">Impostazioni</h1>
+                <ul>
+                    <li><a href="ModificaProfiloPersonale?sezione=1">Modifica dati registrazione</a></li>
+                    <li><a href="ModificaProfiloPersonale?sezione=2">Modifica dati opzionali</a></li>
+                    <li><a href="ModificaProfiloPersonale?sezione=3">Impostazioni notifiche</a></li>
+                </ul>
+                <#break>
+                <#case 2>
+                <h1 class="section title">Nome Categoria</h1>
+                <ul>
+                    <li><a href="ProfiloPersonale?sezione=1">Le mie Serie</a></li>
+                    <li class="currentSection">Palinsesto</li>
+                </ul>
+                <h1 class="section title">Impostazioni</h1>
+                <ul>
+                    <li><a href="ModificaProfiloPersonale?sezione=1">Modifica dati registrazione</a></li>
+                    <li><a href="ModificaProfiloPersonale?sezione=2">Modifica dati opzionali</a></li>
+                    <li><a href="ModificaProfiloPersonale?sezione=3">Impostazioni notifiche</a></li>
+                </ul>
+                <#break>
+                <#case 3>
+                <h1 class="section title">Nome Categoria</h1>
+                <ul>
+                    <li><a href="ProfiloPersonale?sezione=1">Le mie Serie</a></li>
+                    <li><a href="ProfiloPersonale?sezione=2">Palinsesto</a></li>
+                </ul>
+                <h1 class="section title">Impostazioni</h1>
+                <ul>
+                    <li class="currentSection">Modifica dati registrazione</li>
+                    <li><a href="ModificaProfiloPersonale?sezione=2">Modifica dati opzionali</a></li>
+                    <li><a href="ModificaProfiloPersonale?sezione=3">Impostazioni notifiche</a></li>
+                </ul>
+                <#break>
+                <#case 4>
+                <h1 class="section title">Nome Categoria</h1>
+                <ul>
+                    <li><a href="ProfiloPersonale?sezione=1">Le mie Serie</a></li>
+                    <li><a href="ProfiloPersonale?sezione=2">Palinsesto</a></li>
+                </ul>
+                <h1 class="section title">Impostazioni</h1>
+                <ul>
+                    <li><a href="ModificaProfiloPersonale?sezione=1">Modifica dati registrazione</a></li>
+                    <li class="currentSection">Modifica dati opzionali</li>
+                    <li><a href="ModificaProfiloPersonale?sezione=3">Impostazioni notifiche</a></li>
+                </ul>
+                <#break>
+                <#case 5>
+                <h1 class="section title">Nome Categoria</h1>
+                <ul>
+                    <li><a href="ProfiloPersonale?sezione=1">Le mie Serie</a></li>
+                    <li><a href="ProfiloPersonale?sezione=2">Palinsesto</a></li>
+                </ul>
+                <h1 class="section title">Impostazioni</h1>
+                <ul>
+                    <li><a href="ModificaProfiloPersonale?sezione=1">Modifica dati registrazione</a></li>
+                    <li><a href="ModificaProfiloPersonale?sezione=2">Modifica dati opzionali</a></li>
+                    <li class="currentSection">Impostazioni notifiche</li>
+                </ul>
+                <#break>
+                <#default>
+                <h1 class="section title">Nome Categoria</h1>
+                <ul>
+                    <li><a href="ProfiloPersonale?sezione=1">Le mie Serie</a></li>
+                    <li><a href="ProfiloPersonale?sezione=2">Palinsesto</a></li>
+                </ul>
+                <h1 class="section title">Impostazioni</h1>
+                <ul>
+                    <li><a href="ModificaProfiloPersonale?sezione=1">Modifica dati registrazione</a></li>
+                    <li><a href="ModificaProfiloPersonale?sezione=2">Modifica dati opzionali</a></li>
+                    <li><a href="ModificaProfiloPersonale?sezione=3">Impostazioni notifiche</a></li>
+                </ul>
+                </#switch>
+            </nav>
+        </div>
+
+        <div id="userProfileContent" class='twelve columns omega'>
+            <#include userProfileContent_tpl>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+
+<div id='removeEpisode' class="formContainer">
+    <#if (episodes?size > 0)>
+    <form action="GestioneSerie" method="POST">
+        <input type="hidden" name="sezione" value="10" />
+        <div class='row mySelectContainer'>
+            <h1>Seleziona gli episodi da eliminare</h1>
+            <div class="myMultipleSelect">
+                <#list episodes as e>
+                <div class="row">
+                    <input type="checkbox" name="episodes" id="episode_${e_index}" value="${e.ID}" />
+                    <label for="episode_${e_index}">[${strip_slashes(e.series.name)?html}] ${e.season?string("00")}x${e.number?string("00")} - ${strip_slashes(e.title)?html}</label>
+                </div>
+                </#list>
+            </div>
+        </div>
+        <button type="submit" name="re" value="1">Rimuovi episodi</button>
+    </form>
+    <#else>
+    <div class='noOption'>
+        <p>Non ci sono episodi da rimuovere</p>
+    </div>
+    </#if>
+</div>

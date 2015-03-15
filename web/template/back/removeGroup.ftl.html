@@ -1,0 +1,24 @@
+
+<div id='removeGroup' class="formContainer">
+    <#if (groups?size > 0)>
+    <form action="GestioneUtenti" method="POST">
+        <input type="hidden" name="sezione" value="4" />
+        <div class='row mySelectContainer'>
+            <h1>Seleziona i gruppi da eliminare</h1>
+            <div class="myMultipleSelect">
+                <#list groups as g>
+                <div class="row">
+                    <input type="checkbox" name="groups" id="group_${g_index}" value="${g.ID}" />
+                    <label for="group_${g_index}">${strip_slashes(g.name)?html}</label>
+                </div>
+                </#list>
+            </div>
+        </div>
+        <button type="submit" name="rg" value="1">Rimuovi gruppi</button>
+    </form>
+    <#else>
+    <div class='noOption'>
+        <p>Non ci sono gruppi da rimuovere</p>
+    </div>
+    </#if>
+</div>

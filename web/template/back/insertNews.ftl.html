@@ -1,0 +1,35 @@
+
+<div id="insertNews" class="formContainer">
+    <form action="GestioneNews" method="POST">
+        <input type="hidden" name="sezione" value="1" />
+        <div class="row">
+            <input name="newsTitle" type="text" maxlength="60" placeholder="Titolo news" required="required" tabindex="1" />
+        </div>
+        <div class="row">
+            <textarea name="newsText" rows="10" placeholder="Inserisci qui il testo della news" required="required" tabindex="2" ></textarea>
+        </div>
+        <div class="row">
+            <input type="url" name="newsImageURL" placeholder="URL immagine" tabindex="3" />
+        </div>
+        <div class="row mySelectContainer">
+            <h1>Seleziona le serie della news</h1>
+            <div class="myMultipleSelect">
+                <#if (series?size > 0)>
+                <#list series as s>
+                <div class="row">
+                    <input type="checkbox" name="series" value="${s.ID}" id="series_${s_index}" />
+                    <label for="series_${s_index}">${strip_slashes(s.name)?html}</label>
+                </div>
+                </#list>
+                <#else>
+                <div class="row">
+                    <input type="checkbox" checked="checked" name="series" value="0" id="noOption" />
+                    <label for="noOption">Non ci sono serie</label>
+                </div>
+                </#if>
+            </div>
+        </div>
+        <button type="submit" name="in" value="1">Aggiungi la news</button>
+    </form>
+</div>
+

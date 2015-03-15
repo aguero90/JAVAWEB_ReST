@@ -1,0 +1,24 @@
+
+<div id='removeSeries' class="formContainer">
+    <#if (series?size > 0)>
+    <form action="GestioneSerie" method="POST">
+        <input type="hidden" name="sezione" value="9" />
+        <div class='row mySelectContainer'>
+            <h1>Seleziona le serie da eliminare</h1>
+            <div class="myMultipleSelect">
+                <#list series as s>
+                <div class="row">
+                    <input type="checkbox" name="series" id="series_${s_index}" value="${s.ID}" />
+                    <label for="series_${s_index}">${strip_slashes(s.name)?html}</label>
+                </div>
+                </#list>
+            </div>
+        </div>
+        <button type="submit" name="rs" value="1">Rimuovi serie</button>
+    </form>
+    <#else>
+    <div class='noOption'>
+        <p>Non ci sono serie da rimuovere</p>
+    </div>
+    </#if>
+</div>

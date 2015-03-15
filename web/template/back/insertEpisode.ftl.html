@@ -1,0 +1,36 @@
+
+<div id="insertEpisode" class="formContainer">
+    <form action="GestioneSerie" method="POST">
+        <input type="hidden" name="sezione" value="2" />
+        <div class="row">
+            <input name="episodeSeason" type="text" maxlength="2" placeholder="Numero stagione" pattern="[0-9]+" title="deve essere un numero di massimo due cifre" required="required" tabindex="1" />
+        </div>
+        <div class="row">
+            <input name="episodeNumber" type="text" maxlength="2" placeholder="Numero episodio" pattern="[0-9]+" title="deve essere un numero di massimo due cifre" required="required" tabindex="2" />
+        </div>
+        <div class="row">
+            <input name="episodeTitle" type="text" maxlength="60" placeholder="Titolo episodio" required="required" tabindex="3" />
+        </div>
+        <div class="row">
+            <textarea name="episodeDescription" rows="10" placeholder="Inserisci qui la trama dell'episodio" required="required" tabindex="4" ></textarea>
+        </div>
+        <div class="row mySelectContainer">
+            <div class="mySingleSelect">
+                <input type="checkbox" id="seriesSelect" class="mySingleSelectArrow" />
+                <label for="seriesSelect"></label>
+                <div class="mySingleSelectOption">
+                    <input type="radio" name="series" id="noSeries" checked="checked" value="0" />
+                    <label for="noSeries">Nessuna serie</label>
+                    <#if (series?size > 0)>
+                    <#list series as s>
+                    <input type="radio" name="series" id="series_${s_index}" value="${s.ID}" />
+                    <label for="series_${s_index}">${strip_slashes(s.name)?html}</label>
+                    </#list>
+                    </#if>
+                </div>
+            </div>
+        </div>
+        <button type="submit" name="ie" value="1">Aggiungi episodio</button>
+    </form>
+</div>
+

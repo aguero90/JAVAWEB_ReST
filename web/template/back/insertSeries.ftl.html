@@ -1,0 +1,26 @@
+
+<div id="insertSeries" class="formContainer">
+    <form action="GestioneSerie" method="POST">
+        <input type="hidden" name="sezione" value="1" />
+        <div class="row">
+            <input name="seriesName" type="text" maxlength="60" placeholder="Nome serie" required="required" tabindex="1" />
+        </div>
+        <div class="row">
+            <input type="url" name="seriesImageURL" placeholder="URL immagine" required="required" tabindex="2" />
+        </div>
+        <div class="row">
+            <textarea name="seriesDescription" rows="10" placeholder="Inserisci qui la trama della serie" required="required" tabindex="3" ></textarea>
+        </div>
+        <div class="row">
+            <input name="seriesYear" type="text" maxlength="60" placeholder="Anno della serie" pattern="[0-9]{4}" title="Deve essere formato da quattro cifre" required="required" tabindex="4" />
+        </div>
+        <div class="row">
+            <input type="radio" id="onGoing" checked='checked' name="state" value='1' tabindex="5" />
+            <label for="onGoing">In corso</label>
+            <input type="radio" id="complete" name="state" value='2' tabindex="6" />
+            <label for="complete">Conclusa</label>
+        </div>
+        <button type="submit" name="is" value="1">Aggiungi la serie</button>
+    </form>
+</div>
+

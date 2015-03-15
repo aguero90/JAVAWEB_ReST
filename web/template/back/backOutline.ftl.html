@@ -1,0 +1,143 @@
+
+<div id="backOutline">
+    <div id="leftCol" class="four columns alpha">
+        <nav>
+            <h1 class="section title">Gestici News</h1>
+            <ul>
+                <#if (currentSection?? && (currentSection == 1)) >
+                <li class="save currentSection">Inserisci news</li>
+                <#else>
+                <li class="save"><a href="GestioneNews?sezione=1">Inserisci news</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 2)) >
+                <li class="remove currentSection">Rimuovi news</li>
+                <#else>
+                <li class="remove"><a href="GestioneNews?sezione=2">Rimuovi news</a></li>
+                </#if>
+            </ul>
+            <h1 class="section title">Gestici Serie</h1>
+            <ul>
+                <#if (currentSection?? && (currentSection == 3)) >
+                <li class="save currentSection">Inserisci serie</li>
+                <#else>
+                <li class="save"><a href="GestioneSerie?sezione=1">Inserisci serie</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 4)) >
+                <li class="save currentSection">Inserisci episodio</li>
+                <#else>
+                <li class="save"><a href="GestioneSerie?sezione=2">Inserisci episodio</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 5)) >
+                <li class="save currentSection">Inserisci canale</a></li>
+                <#else>
+                <li class="save"><a href="GestioneSerie?sezione=3">Inserisci canale</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 6)) >
+                <li class="save currentSection">Inserisci genere</li>
+                <#else>
+                <li class="save"><a href="GestioneSerie?sezione=4">Inserisci genere</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 7)) >
+                <li class="save currentSection">Inserisci membro del cast</li>
+                <#else>
+                <li class="save"><a href="GestioneSerie?sezione=5">Inserisci membro del cast</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 8)) >
+                <li class="save currentSection">Associa membro del cast e serie</li>
+                <#else>
+                <li class="save"><a href="GestioneSerie?sezione=6">Associa membro del cast e serie</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 9)) >
+                <li class="save currentSection">Associa canale e episodio</li>
+                <#else>
+                <li class="save"><a href="GestioneSerie?sezione=7">Associa canale e episodio</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 10)) >
+                <li class="save currentSection">Associa genere e serie</li>
+                <#else>
+                <li class="save"><a href="GestioneSerie?sezione=8">Associa genere e serie</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 11)) >
+                <li class="remove currentSection">Rimuovi serie</li>
+                <#else>
+                <li class="remove"><a href="GestioneSerie?sezione=9">Rimuovi serie</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 12)) >
+                <li class="remove currentSection">Rimuovi episodio</li>
+                <#else>
+                <li class="remove"><a href="GestioneSerie?sezione=10">Rimuovi episodio</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 13)) >
+                <li class="remove currentSection">Rimuovi canale</li>
+                <#else>
+                <li class="remove"><a href="GestioneSerie?sezione=11">Rimuovi canale</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 14)) >
+                <li class="remove currentSection">Rimuovi genere</li>
+                <#else>
+                <li class="remove"><a href="GestioneSerie?sezione=12">Rimuovi genere</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 15)) >
+                <li class="remove currentSection">Rimuovi membro del cast</li>
+                <#else>
+                <li class="remove"><a href="GestioneSerie?sezione=13">Rimuovi membro del cast</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 16)) >
+                <li class="remove currentSection">Dissocia membro del cast e serie</li>
+                <#else>
+                <li class="remove"><a href="GestioneSerie?sezione=14">Dissocia membro del cast e serie</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 17)) >
+                <li class="remove currentSection">Dissocia canale e episodio</li>
+                <#else>
+                <li class="remove"><a href="GestioneSerie?sezione=15">Dissocia canale e episodio</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 18)) >
+                <li class="remove currentSection">Dissocia genere e serie</li>
+                <#else>
+                <li class="remove"><a href="GestioneSerie?sezione=16">Dissocia genere e serie</a></li>
+                </#if>
+            </ul>
+            <h1 class="section title">Gestisci Utenti</h1>
+            <ul>
+                <#if (currentSection?? && (currentSection == 19)) >
+                <li class="save currentSection">Inserisci gruppo</li>
+                <#else>
+                <li class="save"><a href="GestioneUtenti?sezione=1">Inserisci gruppo</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 20)) >
+                <li class="save currentSection">Inserisci servizio</li>
+                <#else>
+                <li class="save"><a href="GestioneUtenti?sezione=2">Inserisci servizio</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 21)) >
+                <li class="save currentSection">Associa servizio e gruppo</li>
+                <#else>
+                <li class="save"><a href="GestioneUtenti?sezione=3">Associa servizio e gruppo</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 22)) >
+                <li class="remove currentSection">Rimuovi gruppo</li>
+                <#else>
+                <li class="remove"><a href="GestioneUtenti?sezione=4">Rimuovi gruppo</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 23)) >
+                <li class="remove currentSection">Rimuovi servizio</li>
+                <#else>
+                <li class="remove"><a href="GestioneUtenti?sezione=5">Rimuovi servizio</a></li>
+                </#if>
+                <#if (currentSection?? && (currentSection == 24)) >
+                <li class="remove currentSection">Dissocia servizio e gruppo</li>
+                <#else>
+                <li class="remove"><a href="GestioneUtenti?sezione=6">Dissocia servizio e gruppo</a></li>
+                </#if>
+            </ul>
+
+        </nav>
+    </div>
+
+
+    <div id="backContent" class='twelve columns omega'>
+        <#include backContent_tpl>
+    </div>
+
+</div>

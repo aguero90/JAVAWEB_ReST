@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset=UTF-8>
+        <title>REST</title>
+        <link rel="stylesheet" href="css/reset.css" type="text/css"/>
+        <link rel="stylesheet" href="css/grid.css" type="text/css"/>
+        <link rel="stylesheet" href="lib/ElegantFonts/ElegantFonts.css" type="text/css"/>
+        <link rel="stylesheet" href="css/myStyle.css" type="text/css"/>
+        <script src="js/myScript.js" type="text/javascript"></script>
+        <script src="lib/jquery-2.0.2.js" type="text/javascript"></script> <!-- ++++++++++++++++ -->
+        <script src="lib/jquery.stellar.min.js" type="text/javascript"></script> <!-- +++++++++++++++++ -->
+        <!-- +++++++++++++++++ sto tag script è nuovo -->
+        <script>
+            jQuery(document).ready(function ($) {
+                $(window).stellar();
+            });
+        </script>
+    </head>
+
+    <body>
+
+        <!-- +++++++++++++++++ se non ricordo male qui ho eliminato l'headerContainer xD -->
+
+        <div id="outlineContainer" class="container">
+
+            <div id="topBarPlaceholder">&nbsp;</div>
+
+            <div id="topBar">
+                <ul>
+                    <!-- controllo sulla sessione dell'utente -->
+                    <#if user??>
+                    <#if (user.group?? && (user.group.ID == 1))>
+                    <#if (where?? && (where == "back"))>
+                    <li><a href="GestioneNews?sezione=1" class="active" data-icon="&#xe035;">Gestione</a></li>
+                    <#else>
+                    <li><a href="GestioneNews?sezione=1" data-icon="&#xe035;">Gestione</a></li>
+                    </#if>
+                    </#if>
+                    <#if (where?? && (where == "profile"))>
+                    <#if (notifyCount?? && notifyCount > 0) >
+                    <li><a href="ProfiloPersonale?sezione=1" class="active" data-icon="&#xe08a;">Profilo<span class="notifyCount">${notifyCount}</span></a></li>
+                    <#else>
+                    <li><a href="ProfiloPersonale?sezione=1" class="active" data-icon="&#xe08a;">Profilo</a></li>
+                    </#if>
+                    <#else>
+                    <#if (notifyCount?? && notifyCount > 0) >
+                    <li><a href="ProfiloPersonale?sezione=1" data-icon="&#xe08a;">Profilo<span class="notifyCount">${notifyCount}</span></a></li>
+                    <#else>
+                    <li><a href="ProfiloPersonale?sezione=1" data-icon="&#xe08a;">Profilo</a></li>
+                    </#if>
+                    </#if>
+                    </#if>
+                    <#if (where?? && (where == "news"))>
+                    <!-- +++++++++ qui ho messo la scritta home e l'icona con la casetta perchè la voleva il prof -.- -->
+                    <li><a href="ListaNews" class="active" data-icon="&#xe009;">Home</a></li>
+                    <#else>
+                    <!-- +++++++++ qui ho messo la scritta home e l'icona con la casetta perchè la voleva il prof -.- -->
+                    <li><a href="ListaNews" data-icon="&#xe009;">Home</a></li>
+                    </#if>
+                    <#if (where?? && (where == "series"))>
+                    <li><a href="ListaSerie" class="active" data-icon="&#xe024;">Serie TV</a></li>
+                    <#else>
+                    <li><a href="ListaSerie" data-icon="&#xe024;">Serie TV</a></li>
+                    </#if>
+                    <#if user??>
+                    <li id="LogOut"><a href="LogOut">Log Out</a></li>
+                    <#else>
+                    <li id="LogIn"><a href="LogIn">Log In</a></li>
+                    </#if>
+                    <li id="search">
+                        <div>
+                            <form id="searchForm">
+                                <button type="submit" data-icon="&#x55;"></button>
+                                <input type="search">
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div><!-- FINE TOP BAR -->
+
+            <div id="littleScreenTopBar">
+                <ul>
+                    <li id="littleScreenSearch">
+                        <a href='#'><span class='arrow_carrot-left'></span></a>
+                        <form>
+                            <button type="submit"><span id="littleScreenSearchSpan" data-icon="&#x55;"></span> </button>
+                            <input type="search">
+                        </form>
+                    </li>
+                    <!-- controllo sulla sessione dell'utente -->
+                    <#if user??>
+                    <#if (user.group?? && (user.group.ID == 1))>
+                    <#if (where?? && (where == "back"))>
+                    <li id="littleScreenAdminSettings"><a href="GestioneNews?sezione=1" class="active"><span class="icon_tools"></span></a></li>
+                    <#else>
+                    <li id="littleScreenAdminSettings"><a href="GestioneNews?sezione=1"><span class="icon_tools"></span></a></li>
+                    </#if>
+                    </#if>
+                    <#if (where?? && (where == "profile"))>
+                    <#if (notifyCount?? && notifyCount > 0) >
+                    <li><a href="ProfiloPersonale?sezione=1" class="active"><span class="icon_profile"></span><span class="notifyCount">${notifyCount}</span></a></li>
+                    <#else>
+                    <li><a href="ProfiloPersonale?sezione=1" class="active"><span class="icon_profile"></span></a></li>
+                    </#if>
+                    <#else>
+                    <#if (notifyCount?? && notifyCount > 0) >
+                    <li><a href="ProfiloPersonale?sezione=1"><span class="icon_profile"></span><span class="notifyCount">${notifyCount}</span></a></li>
+                    <#else>
+                    <li><a href="ProfiloPersonale?sezione=1"><span class="icon_profile"></span></a></li>
+                    </#if>
+                    </#if>
+                    </#if>
+                    <#if (where?? && (where == "news"))>
+                    <!-- +++++++++ qui ho messo l'icona con la casetta perchè la voleva il prof -.- -->
+                    <li><a href="ListaNews" class="active"><span class="icon_house_alt"></span></a></li>
+                    <#else>
+                    <!-- +++++++++ qui ho messo l'icona con la casetta perchè la voleva il prof -.- -->
+                    <li><a href="ListaNews"><span class="icon_house_alt"></span></a></li>
+                    </#if>
+                    <#if (where?? && (where == "series"))>
+                    <li><a href="ListaSerie" class="active"><span class="icon_film"></span></a></li>
+                    <#else>
+                    <li><a href="ListaSerie"><span class="icon_film"></span></a></li>
+                    </#if>
+                    <#if user?? >
+                    <li><a href="LogOut" id="littleScreenLogOut"><span class="icon_lock_alt"></span></a></li>
+                    <#else>
+                    <li><a href="LogIn" id="littleScreenLogIn"><span class="icon_lock-open_alt"></span></a></li>
+                    </#if>
+                    <li><a href="#littleScreenSearch" id="goToSearch"><span data-icon="&#x55;"></span></a></li>
+                </ul>
+            </div><!-- FINE LITTLE SCREEN TOP BAR -->
+
+
+            <#if error??>
+            <div id="message" class="error">
+                <h1>Oops.. si &egrave; verificato il seguente errore:</h1>
+                <p>${error?html}</p>
+            </div>
+            </#if>
+
+            <#if success??>
+            <div id="message" class="success">
+                <h1>Complimenti!</h1>
+                <p>${success?html}</p>
+            </div>
+            </#if>
+
+
+            <div id="outlineBody" class="row ">
+                <!-- Sarà diverso a seconda della pagina in cui siamo -->
+                <#include content_tpl>
+            </div><!-- FINE body -->
+
+
+            <div id="outlineFooter" class="row">
+                <!-- sarà sempre lo stesso -->
+                <div id="footerImage" class="two columns alpha">
+                    <img src="img/placeholder.jpg" alt="Immagine ReST" />
+                </div>
+                <div id="ReSTDescription" class="four columns">
+                    <h1>ReST</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod ..</p>
+                </div>
+                <div id="social" class="three columns">
+                    <h1>Follow us</h1>
+                    <ul>
+                        <li><a href="#" id="facebook" data-icon="&#xe093;">Facebook</a></li>
+                        <li><a href="#" id="twitter" data-icon="&#xe094;">Twitter</a></li>
+                        <li><a href="#" id="linkedIn" data-icon="&#xe09d;">LinkedIn</a></li>
+                        <li><a href="#" id="googlePlus" data-icon="&#xe096;">Google+</a></li>
+                    </ul>
+                </div>
+                <div id="ReSTMobileApp" class="four columns">
+                    <h1>ReST mobile App</h1>
+                    <p>Scarica la nostra applicazione per smartphone sul play store</p>
+                    <a href="#" id="googlePlay">Download</a>
+                </div>
+                <div id="aboutUsAndCredits" class="three columns omega">
+                    <div id="aboutUS">
+                        <h1>About us</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod ..</p>
+                    </div>
+                    <div id="credits">
+                        <h1>Credits</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod ..</p>
+                    </div>
+                </div>
+            </div><!-- FINE footer -->
+        </div><!-- FINE container body -->
+
+
+    </body>
+</html>

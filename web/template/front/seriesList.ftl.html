@@ -1,0 +1,164 @@
+
+<!-- +++++++++++++++++++++++++++++++ Ho aggiunto qui lo slider -->
+<!-- SLIDER
+============================================================================================= -->
+<div id="slider" class="row">
+    <div id="slideshow-wrap">
+        <input type="radio" id="button-1" name="controls" checked="checked"/>
+        <label for="button-1"></label>
+        <input type="radio" id="button-2" name="controls"/>
+        <label for="button-2"></label>
+        <input type="radio" id="button-3" name="controls"/>
+        <label for="button-3"></label>
+        <input type="radio" id="button-4" name="controls"/>
+        <label for="button-4"></label>
+        <input type="radio" id="button-5" name="controls"/>
+        <label for="button-5"></label>
+        <label for="button-1" class="arrows" id="arrow-1"><span class="arrow_carrot-right"></span></label>
+        <label for="button-2" class="arrows" id="arrow-2"><span class="arrow_carrot-right"></span></label>
+        <label for="button-3" class="arrows" id="arrow-3"><span class="arrow_carrot-right"></span></label>
+        <label for="button-4" class="arrows" id="arrow-4"><span class="arrow_carrot-right"></span></label>
+        <label for="button-5" class="arrows" id="arrow-5"><span class="arrow_carrot-right"></span></label>
+        <div id="slideshow-inner">
+            <ul>
+                <#list trendiestSeries as s>
+                <li id="slide${s_index + 1}"><img src="${strip_slashes(s.imageURL)?html}" alt="Immagine di ${strip_slashes(s.name)}"/></li>
+                </#list>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- COLONNA SINISTRA
+    ============================================================================================= -->
+    <div id="leftCol" class="four columns alpha formContainer">
+        <!-- Filtri -->
+        <form action="ListaSerie" method="GET" id="seriesFilterForm">
+            <h1 class="section title">Filtra per</h1>
+            <div id="seriesFilter" class="leftColRealForm">
+                <div class="row">
+                    <button type="submit" name="s" value="1" id="searchButtonFilter" data-icon="&#x55;"></button>
+                    <input type="text" name="fn" class="search" placeholder="Nome" maxlength="60" pattern="[a-zA-Z0-9\s]*" title="puoi inserire solo caratteri alfanumerici e spazi"/>
+                </div>
+                <div class="row mySelectContainer">
+                    <h1>Genere</h1>
+                    <div class="myMultipleSelect">
+                        <#list genres as g>
+                        <div class="row">
+                            <input type="checkbox" id="genres_${g_index}" name="fg" value="${g.ID}" />
+                            <label for="genres_${g_index}">${strip_slashes(g.name)?html}</label>
+                        </div>
+                        </#list>
+                    </div>
+                </div>
+                <#if (channels?size > 0)>
+                <div class="row mySelectContainer">
+                    <div class="mySingleSelect">
+                        <input type="checkbox" id="channelSelect" class="mySingleSelectArrow" />
+                        <label for="channelSelect"></label>
+                        <div class="mySingleSelectOption">
+                            <input type="radio" name="fc" checked="checked" id="noChannel" value="0" />
+                            <label for="noChannel">Nessun canale</label>
+                            <#list channels as c>
+                            <input type="radio" name="fc" id="channel_${c_index}" value="${c.ID}" />
+                            <label for="channel_${c_index}">${c.number?string("000")} - ${strip_slashes(c.name)?html}</label>
+                            </#list>
+                        </div>
+                    </div>
+                </div>
+                </#if>
+                <div class="row">
+                    <input type="radio" name="fs" value="1" id="filterOnGoingSeriesRadio">
+                    <label for="filterOnGoingSeriesRadio">In corso</label>
+                </div>
+                <div class="row">
+                    <input type="radio" name="fs" value="2" id="filterCompleteSeriesRadio">
+                    <label for="filterCompleteSeriesRadio">Completa</label>
+                </div>
+                <div class="row">
+                    <button type="submit" name="s" value="1">Filtra</button>
+                </div>
+            </div><!-- FINE filtri -->
+            <!-- Ordinamenti -->
+            <h1 class="section title">Ordina per</h1>
+            <div id="seriesSorting" class="leftColRealForm">
+                <div class="row">
+                    <input type="radio" name="o" value="1" id="sortForPopularityRadio">
+                    <label for="sortForPopularityRadio">Popolarit&agrave;</label>
+                </div>
+                <div class="row">
+                    <input type="radio" name="o" value="2" id="sortForRateRadio">
+                    <label for="sortForRateRadio">Valutazione</label>
+                </div>
+                <div class="row">
+                    <input type="radio" name="o" value="3" id="sortForYearRadio">
+                    <label for="sortForYearRadio">Anno</label>
+                </div>
+                <div class="row">
+                    <input type="radio" name="o" value="4" id="sortForNameRadio">
+                    <label for="sortForNameRadio">Nome</label>
+                </div>
+                <div class="row">
+                    <button type="submit" name="s" value="1">Ordina</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- LISTA SERIE
+    ============================================================================================= -->
+    <!-- controlliamo se esistono liste -->
+    <#if (series?size > 0)>
+    <div id="seriesList" class="twelve columns omega">
+        <!-- se esistono stampiamole tutte -->
+        <#list series as s>
+        <!-- +++++++++++++++++++++++++ ho commentato ste righe -->
+        <!-- stampo una riga ogni 4 elementi e se non sono agli ultimi 3 elementi -->
+        <!-- decommentare se si vuole l'effetto spiegato sopra
+        <#if ((s_index % 4) == 0)>
+        <div class="row">
+            </#if>
+        -->
+        <div class="seriesBox columns">
+            <a href="SchedaSerie?id=${s.ID}">
+                <div class="imgContainer">
+                    <img src="${strip_slashes(s.imageURL)}" alt="immagine ${strip_slashes(s.name)?html}"/>
+                </div>
+                <div class="seriesDescription verticalCenter">
+                    <div>
+                        <h1>${strip_slashes(s.name)?html}</h1>
+                        <span>Vai alla scheda</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- +++++++++++++++++++++ ho commentato ste righe -->
+        <!-- decommentare se si vuole una riga ogni 4 elementi
+            <#if ((((s_index + 1) % 4)  == 0) || ((s_index + 1) == series?size))>
+        </div>
+        </#if>
+        -->
+        </#list>
+
+
+
+        <#if (totalPages?? && ( totalPages > 1 ))>
+        <div class="row pageList">
+            <ul>
+                <#list 1..totalPages as i>
+                <#if (currentPage?? && ( i == currentPage ))>
+                <li class="currentPage">${i}</li>
+                <#else>
+                <li><a href="?page=${i}">${i}</a></li>
+                </#if>
+                </#list>
+            </ul>
+        </div>
+        </#if>
+
+
+
+    </div>
+    </#if>
+</div>

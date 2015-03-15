@@ -1,0 +1,164 @@
+
+<div id="userSeries">
+
+    <#if (seriesHint?size > 0)>
+    <div id="seriesHint" class="row">
+        <h1 class="row">Potrebbe interessarti anche</h1>
+        <#list seriesHint as sh>
+        <div class="seriesBox four columns omega">
+            <a href="SchedaSerie?id=${sh.ID}">
+                <div class="imgContainer">
+                    <img src="${strip_slashes(sh.imageURL)}" alt="immagine ${strip_slashes(sh.name)?html}"/>
+                </div>
+                <div class="seriesDescription verticalCenter">
+                    <div>
+                        <p>${strip_slashes(sh.name)?html}</p>
+                        <span>Vai alla scheda</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <#if ((sh_index == 3) && (seriesHint?size > 4)) >
+        <a href="ListaSerie?sh=1" id="viewAllHint">Visualizza tutti i suggerimenti</a>
+        <#break>
+        </#if>
+        </#list>
+    </div>
+    </#if>
+
+
+
+    <!-- Controllo se esistono serie preferite per questo utente -->
+    <#if (user.series?size > 0)>
+    <div id="userSeriesList">
+        <!-- se esistono stampiamole tutte -->
+        <#list user.userSeries as us>
+        <!-- stampo una riga ogni 3 elementi e se non sono agli ultimi 3 elementi -->
+        <#if (us_index % 3) == 0 >
+        <div class="row">
+            </#if>
+            <#if (notifySeries?? && (notifySeries?size > 0))>
+            <#list notifySeries as ns>
+            <#if ns.ID == us.series.ID>
+            <div id="s${us.series.ID}" class="series column omega notifySeries">
+                <#break>
+                <#else>
+                <#if (ns_index == (notifySeries?size - 1 ))> <!-- cioè questa serie non è tra quelle da notificare -->
+                <div id="s${us.series.ID}" class="series column omega">
+                    </#if>
+                    </#if>
+                    </#list>
+                    <#else> <!-- cioè non ci sono serie da notificare -->
+                    <div id="s${us.series.ID}" class="series column omega">
+                        </#if>
+                        <div class="head row">
+                            <a href="CerchiaSerie?id=${us.series.ID}" class="left"><span class="icon_chat_alt"></span></a>
+                            <h1 class="center"><a href="SchedaSerie?id=${us.series.ID}">${strip_slashes(us.series.name)}</a></h1>
+                            <a href="?sezione=1&amp;d=${us.series.ID}" class="right"><span class="icon_trash_alt"></span></a>
+                        </div>
+                        <div class="imgContainer row">
+                            <img src="${strip_slashes(us.series.imageURL)}" alt="Immagine di ${strip_slashes(us.series.name)}"/>
+                            <div class="ratingBox">
+                                <#switch us.rating!"0">
+                                <#case "1">
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=1" class="icon_star rating star firstStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=2" class="icon_star_alt rating star secondStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=3"  class="icon_star_alt rating star thirdStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=4"  class="icon_star_alt rating star fourthStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=5"  class="icon_star_alt rating star fifthStar"></a>
+                                <#break>
+                                <#case "2">
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=1"  class="icon_star rating star firstStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=2"  class="icon_star rating star secondStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=3"  class="icon_star_alt rating star thirdStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=4"  class="icon_star_alt rating star fourthStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=5"  class="icon_star_alt rating star fifthStar"></a>
+                                <#break>
+                                <#case "3">
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=1"  class="icon_star rating star firstStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=2"  class="icon_star rating star secondStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=3"  class="icon_star rating star thirdStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=4"  class="icon_star_alt rating star fourthStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=5"  class="icon_star_alt rating star fifthStar"></a>
+                                <#break>
+                                <#case "4">
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=1"  class="icon_star rating star firstStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=2"  class="icon_star rating star secondStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=3"  class="icon_star rating star thirdStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=4"  class="icon_star rating star fourthStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=5"  class="icon_star_alt rating star fifthStar"></a>
+                                <#break>
+                                <#case "5">
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=1"  class="icon_star rating star firstStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=2"  class="icon_star rating star secondStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=3"  class="icon_star rating star thirdStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=4"  class="icon_star rating star fourthStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=5"  class="icon_star rating star fifthStar"></a>
+                                <#break>
+                                <#default>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=1"  class="icon_star_alt rating star firstStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=2"  class="icon_star_alt rating star secondStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=3"  class="icon_star_alt rating star thirdStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=4"  class="icon_star_alt rating star fourthStar"></a>
+                                <a href="?sezione=1&amp;s=${us.series.ID}&amp;r=5"  class="icon_star_alt rating star fifthStar"></a>
+                                </#switch>
+                            </div>
+                        </div>
+                        <div class="mySeriesInfo row">
+                            <div class="formContainer">
+                                <form action="ProfiloPersonale" method="POST">
+                                    <input type="hidden" name="sezione" value="1" />
+                                    <input type="hidden" name="series" value="${us.series.ID}" />
+                                    <#if us.anticipationNotification??>
+                                    <div class="row myTimePickerContainer">
+                                        <input type="checkbox" checked='checked' name="a" id="notificationActive${us_index}" class="singleNotificationActive" value="1" />
+                                        <label for="notificationActive${us_index}">Anticipo notifica</label>
+                                        <input class="myTimePickerInput" value="${us.anticipationNotification?string("HH:mm")}" name="an" type="text" placeholder="Anticipo (hh:mm)" pattern="(0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9])" autocomplete="off"/>
+                                    </div>
+                                    <#else>
+                                    <div class="row myTimePickerContainer">
+                                        <input type="checkbox" name="a" id="notificationActive${us_index}" class="singleNotificationActive" value="1" />
+                                        <label for="notificationActive${us_index}">Anticipo notifica</label>
+                                        <input class="myTimePickerInput" name="an" type="text" placeholder="Anticipo (hh:mm)" pattern="(0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9])" autocomplete="off"/>
+                                    </div>
+                                    </#if>
+                                    <div class="row">
+                                        <p>Ultimo episodio visto: </p>
+                                    </div>
+                                    <div class="row mySelectContainer">
+                                        <div class="mySingleSelect">
+                                            <input type="checkbox" id="episodeSelect${us_index}" class="mySingleSelectArrow" />
+                                            <label for="episodeSelect${us_index}"></label>
+                                            <div class="mySingleSelectOption">
+                                                <input type="radio" name="lastEpisodeSeen" id="noEpisodeFor${us_index}" checked="checked"  value="0" />
+                                                <label for="noEpisodeFor${us_index}">Non impostato</label>
+                                                <#if (us.series.episodes?size > 0)>
+                                                <#list us.series.episodes as e>
+                                                <#if ((e.season == us.season) && (e.number == us.episode)) >
+                                                <input type="radio" name="lastEpisodeSeen" id="episode_${e.ID}" checked="checked" value="${e.ID}" />
+                                                <#else>
+                                                <input type="radio" name="lastEpisodeSeen" id="episode_${e.ID}" value="${e.ID}" />
+                                                </#if>
+                                                <label for="episode_${e.ID}">${e.season?string("00")}x${e.number?string("00")} - ${strip_slashes(e.title)?html}</label>
+                                                </#list>
+                                                </#if>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" name="ems" value="1">Salva Modifiche</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>        
+                    <#if ((((us_index + 1) % 3)  == 0) || ((us_index + 1) >= user.series?size ) )>
+                </div>
+                </#if>
+                </#list>
+            </div>
+            <#else>
+            <!-- altrimenti diciamo che l'utente non ha serie preferite -->
+            <div>
+                <p>Purtroppo non hai ancora serie aggiunte ai preferiti.</p>
+            </div>
+            </#if> <!-- FINE STAMPA DELLE SERIE -->
+        </div>
